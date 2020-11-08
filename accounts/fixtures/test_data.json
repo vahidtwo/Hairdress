@@ -1,0 +1,23 @@
+[
+  {
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+      "username": "vahidtwo",
+      "created_at": "2020-01-01T00:00:00.000Z",
+      "updated_at": "2020-01-01T00:00:00.000Z",
+      "is_superuser": true,
+      "is_staff": true,
+      "password": "pbkdf2_sha256$216000$ALgR2FuYYeKJ$6rZ6CPl5Q2j0VelUIN6flqmOwhC/Ns9ctd3Sm5ce75U="
+    }},{
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+      "username": "test",
+      "created_at": "2020-01-01T00:00:00.000Z",
+      "updated_at": "2020-01-01T00:00:00.000Z",
+      "is_superuser": false,
+      "is_staff": false,
+      "password": "pbkdf2_sha256$216000$ALgR2FuYYeKJ$6rZ6CPl5Q2j0VelUIN6flqmOwhC/Ns9ctd3Sm5ce75U="
+    }}
+]

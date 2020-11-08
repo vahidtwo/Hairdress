@@ -1,6 +1,6 @@
-from core import model
+from core import models
 
 
-class Service(model.AbstractBaseModel):
-    name = model.CharField(max_length=255)
-    price_per_15_min = model.IntegerField()
+class Service(models.AbstractBaseModel):
+    name = models.CharField(max_length=255)
+    price_per_15_min = models.IntegerField()

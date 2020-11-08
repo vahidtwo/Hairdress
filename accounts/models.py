@@ -2,7 +2,7 @@ from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.core.validators import EmailValidator, RegexValidator
 
-from core import model
+from core import models
 
 
 class UserManager(BaseUserManager):
@@ -38,16 +38,16 @@ class UserManager(BaseUserManager):
         return self._create_user(username, password, phone_number, **extra_field)
 
 
-class User(AbstractBaseUser, model.AbstractBaseModel, PermissionsMixin):
+class User(AbstractBaseUser, models.AbstractBaseModel, PermissionsMixin):
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                  message="number must be entered in the format: '+9...' 9 Up to 15 digits allowed.")
-    username = model.CharField(max_length=150, unique=True)
-    first_name = model.CharField(max_length=50, null=True, blank=True)
-    last_name = model.CharField(max_length=50, null=True, blank=True)
-    phone_number = model.CharField(max_length=15, unique=True, validators=[phone_regex])
-    gender = model.BooleanField(default=True)
-    is_staff = model.BooleanField(default=False)
-    is_superuser = model.BooleanField(default=False)
+    username = models.CharField(max_length=150, unique=True)
+    first_name = models.CharField(max_length=50, null=True, blank=True)
+    last_name = models.CharField(max_length=50, null=True, blank=True)
+    phone_number = models.CharField(max_length=15, unique=True, validators=[phone_regex])
+    gender = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
     objects = UserManager()
 
     USERNAME_FIELD = 'username'

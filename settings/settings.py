@@ -86,7 +86,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-logs = ['arayeshgah', 'shift', 'accounts']
+logs = ['arayeshgah', 'shift', 'accounts', 'comment_point', 'barber']
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
