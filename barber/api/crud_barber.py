@@ -39,3 +39,21 @@ class CRUDBarber(APIView):
         except Exception as e:
             logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
             return JsonResponse(status=500)
+
+    def put(self, request, barber_id):
+        try:
+            req = request.data
+            barber = Barber.objects.get(pk=barber_id)
+            barber.user.first_name = req['first_name'] if req.get('first_name') else barber.user.first_name
+            barber.user.last_name = req['last_name'] if req.get('last_name') else barber.user.last_name
+            barber.user.mobile_number = req['mobile_number'] if req.get('mobile_number') else barber.user.mobile_number
+            barber.user.gender = req['gender'] if req.get('gender') else barber.user.gender
+            barber.user.mobile_number = req['mobile_number'] if req.get('mobile_number') else barber.user.mobile_number
+            barber.user.username = req['mobile_number'] if req.get('mobile_number') else barber.user.mobile_number
+            barber.user.save()
+            return JsonResponse(message='مشخصات ارایشگر بروز شد')
+        except Barber.DoesNotExist:
+            return JsonResponse(status=404, message='ارایشگر یافت نشد')
+        except Exception as e:
+            logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
+            return JsonResponse(status=500)

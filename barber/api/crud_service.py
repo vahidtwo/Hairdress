@@ -34,6 +34,20 @@ class CRUDService(APIView):
             logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
             return JsonResponse(status=500)
 
+    def put(self, request, service_id):
+        try:
+            service = Service.objects.get(pk=service_id)
+            service.name = request.data['name'] if request.data.get('name') else service.name
+            service.price_per_15_min = request.data['price_per_15_min'] if request.data.get(
+                'price_per_15_min') else service.price_per_15_min
+            service.save()
+            return JsonResponse(message='سرویس مورد نظر بروز شد')
+        except Service.DoesNotExist:
+            return JsonResponse(status=404, message='سرویس مورد نظر یافت نشد')
+        except Exception as e:
+            logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
+            return JsonResponse(status=500)
+
     def delete(self, request, service_id):
         try:
             Service.objects.get(pk=service_id).delete()
