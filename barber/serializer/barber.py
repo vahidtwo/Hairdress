@@ -1,11 +1,11 @@
 from accounts.serializer import UserSerializer
-from .services import ServicesSerializer
 from barber.models import Barber
 from core import serializers
+from .services import ServicesSerializer
 
 
 class BarberSerializer(serializers.ModelSerializer):
-    user = UserSerializer(read_only=True)
+    user = UserSerializer(read_only=True, exclude=('token',))
     services = ServicesSerializer(read_only=True, many=True)
 
     class Meta:

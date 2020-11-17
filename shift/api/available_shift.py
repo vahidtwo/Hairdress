@@ -20,17 +20,17 @@ class AvailableShift(APIView):
     permission_classes = ()
     authentication_classes = ()
 
-    def get(self, request):
+    def get(self, request, barber_id):
         try:
-            barber = Barber.objects.get(pk=request.query_params['barber_id'])
-            shifts = Shift.objects.filter(end_at__gte=datetime.datetime.now(), barber=barber)
+            barber = Barber.objects.get(pk=barber_id)
+            date = datetime.datetime.now().astimezone(pytz.timezone('Asia/Tehran')).replace(tzinfo=datetime.timezone.utc)
+            shifts = Shift.objects.filter(end_at__gte=date, barber=barber)
             if request.query_params.get('date'):
                 date = jdatetime.datetime.strptime(fix_date(request.query_params['date']), '%Y/%m/%d')
                 shifts = shifts.filter(end_at__lte=date.togregorian() + datetime.timedelta(days=1))
-                date = date.astimezone(pytz.timezone('Asia/Tehran'))
-                all_shift = shift_from(date)
+                all_shift_times = shift_from(date)
             else:
-                all_shift = shift_from()
+                all_shift_times = shift_from()
             for i in shifts:
                 start = i.start_at
                 end = i.end_at
@@ -40,9 +40,10 @@ class AvailableShift(APIView):
                 else:
                     times = [start]
                 for time in times:
-                    all_shift.remove(time)
+                    print(all_shift_times[0], times)
+                    all_shift_times.remove(time)
             work_shifts = []
-            for i in all_shift:
+            for i in all_shift_times:
                 work_shifts.append({
                     'start_at': jalali_datetime(i),
                     'end_at': jalali_datetime(i + datetime.timedelta(minutes=15))

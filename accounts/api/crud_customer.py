@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from accounts.models import User
 from accounts.serializer import UserSerializer
 from core.http import JsonResponse
+from core.utils.paginate import paginate
 
 logger = logging.getLogger('accounts')
 
@@ -19,9 +20,13 @@ class CRUDCustomer(APIView):
         try:
             if user_id:
                 user = User.objects.get(pk=user_id)
+                return JsonResponse(UserSerializer(user).data)
             else:
                 user = User.objects.filter(barber__isnull=True)
-            return JsonResponse(UserSerializer(user, many=True).datao)
+                return JsonResponse(**paginate(user,
+                                               serializer=UserSerializer,
+                                               page=request.query_params.get('page'),
+                                               limit=request.query_params.get('limit')))
         except User.DoesNotExist:
             return JsonResponse(status=404, message='مشتری یافت نشد')
         except Exception as e:
@@ -31,13 +36,15 @@ class CRUDCustomer(APIView):
     def post(self, request):
         try:
             req = request.data
-            User.objects.get_or_create(username=req['mobile_number'], defaults={
+            user = User.objects.get_or_create(username=req['phone_number'], defaults={
                 "gender": req['gender'] if req.get('gender') else False,
-                "mobile_number": req['mobile_number'],
-                "username": req['mobile_number'],
+                "phone_number": req['phone_number'],
+                "username": req['phone_number'],
                 'first_name': req['first_name'],
                 'last_name': req['last_name'],
-            })
+            })[0]
+            user.set_password(req['password'])
+            user.save()
             return JsonResponse(message='مشتری با موفقیت ساخته شد')
         except Exception as e:
             logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
@@ -51,6 +58,7 @@ class CRUDCustomer(APIView):
             user.username = req['mobile_number'],
             user.first_name = req['first_name'],
             user.last_name = req['last_name'],
+            user.gender = req['gender'],
             user.save()
             return JsonResponse(message='مشتری با موفقیت بروز رسانی شد')
         except User.DoesNotExist:

@@ -1,0 +1,787 @@
+{
+	"info": {
+		"_postman_id": "f1138c33-e1cc-4ef8-8e4e-b334939741d9",
+		"name": "arayeshgah",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "shift",
+			"item": [
+				{
+					"name": "available shift",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:8000/api/shift/available/?barber_id=1&date=1399/08/20",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"shift",
+								"available",
+								""
+							],
+							"query": [
+								{
+									"key": "barber_id",
+									"value": "1"
+								},
+								{
+									"key": "date",
+									"value": "1399/08/20"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "account ",
+			"item": [
+				{
+					"name": "auth",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\":\"vahidtwo\",\n    \"password\":\"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/account/login/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"account",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "auth log-out",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/account/log-out/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"account",
+								"log-out",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "change-password",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token ec6ea6f264640401af850d13676e044a2016caff"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\":123\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/account/change-password/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"account",
+								"change-password",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3b7d4c1b-52b0-4c81-93de-954610153568",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "281d0d46-2366-4b8d-92ee-76339d64bb2e",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "custommer",
+			"item": [
+				{
+					"name": "create custommer",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\":\"09131111111\",\n    \"gender\":false,\n    \"first_name\":\"asal\",\n    \"last_name\":\"asali\",\n    \"password\":\"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/account/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"account",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update custommer",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\":\"09131111111\",\n    \"gender\":false,\n    \"first_name\":\"asal\",\n    \"last_name\":\"asali\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/account/3/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"account",
+								"3",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get custommer",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/account/2/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"account",
+								"2",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get custommers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/account/?page=12&limit=10",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"account",
+								""
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "12"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "barber",
+			"item": [
+				{
+					"name": "get barber",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/barber/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"barber",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create barber",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\":\"09131111111\",\n    \"gender\":false,\n    \"first_name\":\"asal\",\n    \"last_name\":\"asali\",\n    \"password\":\"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/barber/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"barber",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign service",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"barber_id\":1,\n  \"service_ids\":[3,5]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/barber/assign-service/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"barber",
+								"assign-service",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete assigned service",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"barber_id\":1,\n  \"service_ids\":[5]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/barber/assign-service/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"barber",
+								"assign-service",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "service",
+			"item": [
+				{
+					"name": "get services",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/barber/service/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"barber",
+								"service",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create service",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\":\"کوتاهی ریش\",\n   \"price_per_15_min\": 10000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/barber/service/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"barber",
+								"service",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update service",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"name\":\"کوتاهی مو\",\n   \"price_per_15_min\": 16000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/barber/service/1/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"barber",
+								"service",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete service",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/barber/service/4/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"barber",
+								"service",
+								"4",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "shift",
+			"item": [
+				{
+					"name": "assign shift",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"customer_id\":1,\n   \"barber_id\": 1,\n   \"start_at\":\"1399/08/28 7:15:00\",\n   \"end_at\":\"1399/08/28 7:30:00\",\n   \"service_id\":5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/shift/assign-shift/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"shift",
+								"assign-shift",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "workshift",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n \"usual_day_start_morning\":\"7:0:0\",\n\"usual_day_end_morning\":\"12:0:0\",\n\"usual_day_start_afternoon\":\"16:0:0\",\n\"usual_day_end_afternoon\":\"23:59:0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/shift/work-shift/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"shift",
+								"work-shift",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "workshift",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/shift/work-shift/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"shift",
+								"work-shift",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "available barber shift",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"customer_id\":1,\n   \"barber_id\": 1,\n   \"start_at\":\"1399/08/27 22:15:00\",\n   \"end_at\":\"1399/08/27 22:30:00\",\n   \"service_id\":5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/shift/barber/1/available/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"shift",
+								"barber",
+								"1",
+								"available",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

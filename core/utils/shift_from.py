@@ -20,15 +20,15 @@ def shift_from(date=None):
     else:
         date_ = date
         end_date = date + jdatetime.timedelta(days=1)
-
-    usual_day_start_morning = WorkShift.objects.first().usual_day_start_morning
+    work_shift = WorkShift.objects.first()
+    usual_day_start_morning = work_shift.usual_day_start_morning
     usual_day_start_morning = jdatetime.time(hour=usual_day_start_morning.hour, minute=usual_day_start_morning.minute)
-    usual_day_start_afternoon = WorkShift.objects.first().usual_day_start_afternoon
+    usual_day_start_afternoon = work_shift.usual_day_start_afternoon
     usual_day_start_afternoon = jdatetime.time(hour=usual_day_start_afternoon.hour,
                                                minute=usual_day_start_afternoon.minute)
-    usual_day_end_morning = WorkShift.objects.first().usual_day_end_morning
+    usual_day_end_morning = work_shift.usual_day_end_morning
     usual_day_end_morning = jdatetime.time(hour=usual_day_end_morning.hour, minute=usual_day_end_morning.minute)
-    usual_day_end_afternoon = WorkShift.objects.first().usual_day_end_afternoon
+    usual_day_end_afternoon = work_shift.usual_day_end_afternoon
     usual_day_end_afternoon = jdatetime.time(hour=usual_day_end_afternoon.hour, minute=usual_day_end_afternoon.minute)
     shifts = []
     last_shift = date_

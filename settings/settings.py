@@ -23,8 +23,6 @@ INSTALLED_APPS = [
     'accounts',
     'shift',
     'barber',
-    'comment_point',
-
 ]
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -86,7 +84,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-logs = ['arayeshgah', 'shift', 'accounts', 'comment_point', 'barber']
+logs = ['arayeshgah', 'shift', 'accounts', 'barber']
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

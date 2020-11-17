@@ -7,17 +7,36 @@
       "created_at": "2020-01-01T00:00:00.000Z",
       "updated_at": "2020-01-01T00:00:00.000Z",
       "is_superuser": true,
+      "phone_number": "09130000001",
       "is_staff": true,
       "password": "pbkdf2_sha256$216000$ALgR2FuYYeKJ$6rZ6CPl5Q2j0VelUIN6flqmOwhC/Ns9ctd3Sm5ce75U="
-    }},{
+    }}
+,{
     "model": "accounts.user",
-    "pk": 1,
+    "pk": 2,
     "fields": {
       "username": "test",
       "created_at": "2020-01-01T00:00:00.000Z",
       "updated_at": "2020-01-01T00:00:00.000Z",
+      "phone_number": "09130000000",
       "is_superuser": false,
       "is_staff": false,
       "password": "pbkdf2_sha256$216000$ALgR2FuYYeKJ$6rZ6CPl5Q2j0VelUIN6flqmOwhC/Ns9ctd3Sm5ce75U="
-    }}
+    }},{
+    "model": "authtoken.token",
+    "pk": 1,
+    "fields": {
+      "key": "792875d1aba43b46b00f542f498eb30cf7cc3e4c",
+      "created": "2020-01-01T00:00:00.000Z",
+      "user_id": 1
+    }
+  },{
+    "model": "authtoken.token",
+    "pk": 2,
+    "fields": {
+      "key": "3e92a5c3221f762fcbdc5878bb887824d2b03940",
+      "created": "2020-01-01T00:00:00.000Z",
+      "user_id": 2
+    }
+  }
 ]

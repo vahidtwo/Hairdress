@@ -28,8 +28,11 @@ class CRUDService(APIView):
 
     def post(self, request):
         try:
-            Service.objects.create(name=request.data['name'])
-            return JsonResponse(message='سرویس مورد نظر اضافه شد')
+            service = Service.objects.get_or_create(name=request.data['name'],
+                                                    price_per_15_min=request.data['price_per_15_min'])
+            if not service[1]:
+                return JsonResponse(message='سرویس مورد موجود است')
+            return JsonResponse(status=201, message='سرویس مورد نظر اضافه شد')
         except Exception as e:
             logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
             return JsonResponse(status=500)

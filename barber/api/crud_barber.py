@@ -26,34 +26,21 @@ class CRUDBarber(APIView):
     def post(self, request):
         try:
             req = request.data
-            user = User.objects.get_or_create(username=req['mobile_number'], defaults={
+            user = User.objects.get_or_create(username=req['phone_number'], defaults={
                 "first_name": req['first_name'],
                 "last_name": req['last_name'],
-                "mobile_number": req['mobile_number'],
+                "phone_number": req['phone_number'],
                 "gender": req['gender']
             })
-            Barber.objects.create(user=user[0])
             if user[1]:
+                user[0].set_password(req['password'])
+                user[0].save()
+            barber = Barber.objects.get_or_create(user=user[0])
+            if barber[1]:
                 return JsonResponse(message='ارایش گر مورد نظر ساخته شد')
-            return JsonResponse(message='ارایش گر مورد نظر موجود است')
-        except Exception as e:
-            logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
-            return JsonResponse(status=500)
-
-    def put(self, request, barber_id):
-        try:
-            req = request.data
-            barber = Barber.objects.get(pk=barber_id)
-            barber.user.first_name = req['first_name'] if req.get('first_name') else barber.user.first_name
-            barber.user.last_name = req['last_name'] if req.get('last_name') else barber.user.last_name
-            barber.user.mobile_number = req['mobile_number'] if req.get('mobile_number') else barber.user.mobile_number
-            barber.user.gender = req['gender'] if req.get('gender') else barber.user.gender
-            barber.user.mobile_number = req['mobile_number'] if req.get('mobile_number') else barber.user.mobile_number
-            barber.user.username = req['mobile_number'] if req.get('mobile_number') else barber.user.mobile_number
-            barber.user.save()
-            return JsonResponse(message='مشخصات ارایشگر بروز شد')
-        except Barber.DoesNotExist:
-            return JsonResponse(status=404, message='ارایشگر یافت نشد')
+            return JsonResponse(status=201, message='ارایش گر مورد نظر موجود است')
+        except User.DoesNotExist:
+            return JsonResponse(message='یوزر مورد نظر یافت نشد')
         except Exception as e:
             logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
             return JsonResponse(status=500)
