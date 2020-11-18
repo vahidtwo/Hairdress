@@ -360,6 +360,36 @@
 					"response": []
 				},
 				{
+					"name": "get one barber",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/barber/1/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"barber",
+								"1",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "create barber",
 					"request": {
 						"method": "POST",
@@ -391,6 +421,45 @@
 							"path": [
 								"api",
 								"barber",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update barber",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\":\"09131111111\",\n    \"gender\":false,\n    \"first_name\":\"asal\",\n    \"last_name\":\"asali\",\n    \"password\":\"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:8000/api/barber/1/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"barber",
+								"1",
 								""
 							]
 						}
@@ -640,7 +709,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n   \"customer_id\":1,\n   \"barber_id\": 1,\n   \"start_at\":\"1399/08/28 7:15:00\",\n   \"end_at\":\"1399/08/28 7:30:00\",\n   \"service_id\":5\n}",
+							"raw": "{\n   \"customer_id\":1,\n   \"barber_id\": 1,\n   \"start_at\":\"1399/08/29 7:15:00\",\n   \"end_at\":\"1399/08/29 7:30:00\",\n   \"service_id\":5\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -729,6 +798,37 @@
 								"api",
 								"shift",
 								"work-shift",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "barber shift",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"type": "text",
+								"value": "Token 792875d1aba43b46b00f542f498eb30cf7cc3e4c"
+							}
+						],
+						"url": {
+							"raw": "127.0.0.1:8000/api/shift/barber/1/",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"shift",
+								"barber",
+								"1",
 								""
 							]
 						}

@@ -16,9 +16,13 @@ class CRUDBarber(APIView):
     permission_classes = (IsAuthenticated, IsAdminUser)
     authentication_classes = (TokenAuthentication,)
 
-    def get(self, request):
+    def get(self, request, barber_id=None):
         try:
+            if barber_id:
+                return JsonResponse(BarberSerializer(Barber.objects.get(pk=barber_id)).data)
             return JsonResponse(BarberSerializer(Barber.objects.all(), many=True).data)
+        except Barber.DoesNotExist:
+            return JsonResponse(status=404, message='ارایشگر یافت نشد')
         except Exception as e:
             logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
             return JsonResponse(status=500)
@@ -39,8 +43,23 @@ class CRUDBarber(APIView):
             if barber[1]:
                 return JsonResponse(message='ارایش گر مورد نظر ساخته شد')
             return JsonResponse(status=201, message='ارایش گر مورد نظر موجود است')
-        except User.DoesNotExist:
-            return JsonResponse(message='یوزر مورد نظر یافت نشد')
+        except Exception as e:
+            logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
+            return JsonResponse(status=500)
+
+    def put(self, request, barber_id):
+        try:
+            req = request.data
+            barber = Barber.objects.get(pk=barber_id)
+            barber.user.first_name = req['first_name'],
+            barber.user.last_name = req['last_name'],
+            barber.user.phone_number = req['phone_number'],
+            barber.user.username = req['phone_number'],
+            barber.user.gender = req['gender']
+            barber.user.save()
+            return JsonResponse(message='اطلاعات ارایشگر بروز شد')
+        except Barber.DoesNotExist:
+            return JsonResponse(status=404, message='ارایشگر یافت نشد')
         except Exception as e:
             logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
             return JsonResponse(status=500)
