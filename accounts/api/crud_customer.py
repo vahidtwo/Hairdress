@@ -1,5 +1,6 @@
 import logging
 
+from django.core.exceptions import ValidationError
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.views import APIView
@@ -46,6 +47,8 @@ class CRUDCustomer(APIView):
             user.set_password(req['password'])
             user.save()
             return JsonResponse(message='مشتری با موفقیت ساخته شد')
+        except ValidationError as e:
+            return JsonResponse(status=400, message=str(e))
         except Exception as e:
             logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
             return JsonResponse(status=500)
