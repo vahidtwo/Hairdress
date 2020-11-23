@@ -1,5 +1,7 @@
 import logging
 
+from django.core.exceptions import ValidationError
+from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.views import APIView
@@ -43,6 +45,8 @@ class CRUDBarber(APIView):
             if barber[1]:
                 return JsonResponse(message='ارایش گر مورد نظر ساخته شد')
             return JsonResponse(status=201, message='ارایش گر مورد نظر موجود است')
+        except ValidationError as e:
+            return JsonResponse(message=str(e), status=status.HTTP_409_CONFLICT)
         except Exception as e:
             logger.error(f'msg:{str(e)}, lo:{e.__traceback__.tb_lineno}')
             return JsonResponse(status=500)
@@ -58,6 +62,8 @@ class CRUDBarber(APIView):
             barber.user.gender = req['gender']
             barber.user.save()
             return JsonResponse(message='اطلاعات ارایشگر بروز شد')
+        except ValidationError as e:
+            return JsonResponse(message=str(e), status=status.HTTP_409_CONFLICT)
         except Barber.DoesNotExist:
             return JsonResponse(status=404, message='ارایشگر یافت نشد')
         except Exception as e:
