@@ -51,10 +51,10 @@ class CRUDBarber(APIView):
         try:
             req = request.data
             barber = Barber.objects.get(pk=barber_id)
-            barber.user.first_name = req['first_name'],
-            barber.user.last_name = req['last_name'],
-            barber.user.phone_number = req['phone_number'],
-            barber.user.username = req['phone_number'],
+            barber.user.first_name = req['first_name']
+            barber.user.last_name = req['last_name']
+            barber.user.phone_number = req['phone_number']
+            barber.user.username = req['phone_number']
             barber.user.gender = req['gender']
             barber.user.save()
             return JsonResponse(message='اطلاعات ارایشگر بروز شد')
