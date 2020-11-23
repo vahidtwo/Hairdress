@@ -39,8 +39,8 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, models.AbstractBaseModel, PermissionsMixin):
-    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                 message="number must be entered in the format: '+9...' 9 Up to 15 digits allowed.")
+    phone_regex = RegexValidator(regex=r'^0\d{9,11}$',
+                                 message="number must be entered in the format: '09...' 9 Up to 15 digits allowed.")
     username = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
