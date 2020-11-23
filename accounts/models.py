@@ -3,6 +3,7 @@ from django.contrib.auth.models import PermissionsMixin
 from django.core.validators import EmailValidator, RegexValidator
 
 from core import models
+from core.validators import mobile_number_validator
 
 
 class UserManager(BaseUserManager):
@@ -39,13 +40,11 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, models.AbstractBaseModel, PermissionsMixin):
-    phone_regex = RegexValidator(regex=r'^0\d{9,11}$',
-                                 message="number must be entered in the format: '09...' 9 Up to 15 digits allowed.")
     username = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=50, null=True, blank=True)
     last_name = models.CharField(max_length=50, null=True, blank=True)
     password = models.CharField(max_length=255, null=True, blank=True)
-    phone_number = models.CharField(max_length=15, unique=True, validators=[phone_regex])
+    phone_number = models.CharField(max_length=11, unique=True, validators=[mobile_number_validator])
     gender = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)

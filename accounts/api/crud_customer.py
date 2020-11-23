@@ -57,11 +57,11 @@ class CRUDCustomer(APIView):
         try:
             req = request.data
             user = User.objects.get(pk=user_id)
-            user.phone_number = req['phone_number'],
-            user.username = req['phone_number'],
-            user.first_name = req['first_name'],
-            user.last_name = req['last_name'],
-            user.gender = req['gender'],
+            user.phone_number = req['phone_number']
+            user.username = req['phone_number']
+            user.first_name = req['first_name']
+            user.last_name = req['last_name']
+            user.gender = req['gender']
             user.save()
             return JsonResponse(message='مشتری با موفقیت بروز رسانی شد')
         except User.DoesNotExist:
