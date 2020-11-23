@@ -1,6 +1,7 @@
 import logging
 
 from django.core.exceptions import ValidationError
+from rest_framework import status
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.views import APIView
@@ -64,6 +65,8 @@ class CRUDCustomer(APIView):
             user.gender = req['gender']
             user.save()
             return JsonResponse(message='مشتری با موفقیت بروز رسانی شد')
+        except ValidationError as e:
+            return JsonResponse(message=str(e), status=status.HTTP_409_CONFLICT)
         except User.DoesNotExist:
             return JsonResponse(message='مشتری یافت نشد', status=404)
         except Exception as e:
