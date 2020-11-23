@@ -57,8 +57,8 @@ class CRUDCustomer(APIView):
         try:
             req = request.data
             user = User.objects.get(pk=user_id)
-            user.mobile_number = req['mobile_number'],
-            user.username = req['mobile_number'],
+            user.phone_number = req['phone_number'],
+            user.username = req['phone_number'],
             user.first_name = req['first_name'],
             user.last_name = req['last_name'],
             user.gender = req['gender'],
